@@ -32,7 +32,7 @@ const uploadTraining = async (req, res) => {
     }
 
     // Get the video URL from the uploaded file
-    const videoUrl = req.file ? `/uploads/training/${req.file.filename}` : null;
+    const videoUrl = `/uploads/training/${req.file.filename}`;
     if (!videoUrl) {
       return res.status(400).json({ message: 'No video file uploaded' });
     }
