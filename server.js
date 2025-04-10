@@ -18,7 +18,7 @@ if (!fs.existsSync(uploadsDir)) {
 
 // Middleware
 app.use(cors({
-  origin: 'http://localhost:3000', // Your frontend URL
+  origin: 'vms-fe-seven.vercel.app', 
   credentials: true
 }));
 app.use(express.json());
