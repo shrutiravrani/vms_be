@@ -234,37 +234,22 @@ const updateUserProfile = async (req, res) => {
   }
 };
 
-// Upload Profile Image
-const uploadProfileImage = async (req, res) => {
-  try {
-  upload(req, res, async function (err) {
+const uploadProfileImage = (req, res) => {
+  upload(req, res, async (err) => {
     if (err) {
-      console.error('Upload error:', err);
       return res.status(400).json({ message: err.message });
     }
 
     if (!req.file) {
-      console.error('No file uploaded');
-      return res.status(400).json({ message: 'Please upload a file' });
+      return res.status(400).json({ message: 'No file uploaded' });
     }
 
-      // Get the user
+    try {
       const user = await User.findById(req.user.id);
       if (!user) {
-        // Delete the uploaded file if user not found
-            fs.unlinkSync(req.file.path);
         return res.status(404).json({ message: 'User not found' });
       }
 
-      // Delete old profile image if exists
-      if (user.profileImage) {
-        const oldImagePath = path.join(uploadDir, path.basename(user.profileImage));
-        if (fs.existsSync(oldImagePath)) {
-            fs.unlinkSync(oldImagePath);
-        }
-      }
-
-      // Update user's profile image path
       user.profileImage = `/uploads/${req.file.filename}`;
       await user.save();
 
@@ -272,12 +257,13 @@ const uploadProfileImage = async (req, res) => {
         message: 'Profile image uploaded successfully',
         imageUrl: user.profileImage
       });
-    });
-  } catch (error) {
-    console.error('Profile image upload error:', error);
-      res.status(500).json({ message: error.message });
+    } catch (error) {
+      console.error('Error saving profile image:', error);
+      res.status(500).json({ message: 'Failed to update profile image' });
     }
+  });
 };
+
 
 // Get specific volunteer's profile
 const getVolunteerProfile = async (req, res) => {
