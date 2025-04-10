@@ -18,7 +18,7 @@ if (!fs.existsSync(uploadsDir)) {
 
 // Middleware
 app.use(cors({
-  origin: 'vms-fe-seven.vercel.app', 
+  origin: 'https://vms-fe-seven.vercel.app', 
   credentials: true
 }));
 app.use(express.json());
