@@ -502,14 +502,13 @@ module.exports = {
         .createHash('sha256')
         .update(resetToken)
         .digest('hex');
-      user.resetPasswordExpire = Date.now() + 10 * 60 * 1000; // Token expires in 10 minutes
+      user.resetPasswordExpire = Date.now() + 10 * 60 * 1000; 
 
       await user.save();
 
-      // In a real application, you would send this token via email
       res.json({ 
         message: 'Password reset token generated',
-        resetToken // In production, send this via email instead
+        resetToken 
       });
     } catch (error) {
       console.error('Forgot password error:', error);

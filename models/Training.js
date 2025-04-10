@@ -16,12 +16,11 @@ const trainingSchema = new mongoose.Schema({
   videoUrl: {
     type: String,
     required: true,
-    get: function(url) {
+    get: function (url) {
       if (!url) return url;
-      // Remove any undefined prefix
       url = url.replace(/^undefined/, '');
       if (url.startsWith('http')) return url;
-      return `${process.env.BASE_URL || 'http://localhost:5000'}${url}`;
+      return `https://vms-be-bwb0.onrender.com${url}`;
     }
   },
   uploadedBy: {
@@ -48,4 +47,4 @@ const trainingSchema = new mongoose.Schema({
 // Index for faster queries
 trainingSchema.index({ eventId: 1 });
 
-module.exports = mongoose.model('Training', trainingSchema); 
+module.exports = mongoose.model('Training', trainingSchema);

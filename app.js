@@ -33,4 +33,3 @@ app.get('/test-uploads', (req, res) => {
   });
 });
 
-// ... rest of your routes and middleware ... 
