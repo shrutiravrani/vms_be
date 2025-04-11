@@ -24,7 +24,7 @@ const eventSchema = new mongoose.Schema({
     },
   ],
   team: {
-    members: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }] // ✅ Keep this to track team members
+    members: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }] //  Keep this to track team members
   }
 });
 

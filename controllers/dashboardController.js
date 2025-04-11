@@ -39,7 +39,7 @@ const getDashboardData = async (req, res) => {
       
       data = { 
         ...data, 
-        eventsCount: joinedEvents.length, // Total accepted events (both past and upcoming)
+        eventsCount: joinedEvents.length, // Total accepted events both past and upcoming
         upcomingEvents: upcomingEvents.map(event => ({
           ...event.toObject(),
           date: event.date.toISOString() // Ensure consistent date format

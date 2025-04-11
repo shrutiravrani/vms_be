@@ -14,7 +14,7 @@ const initIo = (server) => {
   });
 
   io.on("connection", (socket) => {
-    console.log("🔥 New client connected:", socket.id);
+    console.log(" New client connected:", socket.id);
 
     // Join user's personal room
     socket.on("joinUserRoom", (userId) => {
@@ -51,7 +51,7 @@ const initIo = (server) => {
           });
         }
       } catch (error) {
-        console.error("❌ WebSocket Error:", error);
+        console.error(" WebSocket Error:", error);
       }
     });
 
@@ -67,7 +67,7 @@ const initIo = (server) => {
           io.to(message.sender.toString()).emit("messageRead", { messageId });
         }
       } catch (error) {
-        console.error("❌ WebSocket Read Status Error:", error);
+        console.error(" WebSocket Read Status Error:", error);
       }
     });
 
@@ -103,12 +103,12 @@ const initIo = (server) => {
           io.to(recipientId).emit("receiveMessage", { ...newMessage, sender });
         });
       } catch (error) {
-        console.error("❌ WebSocket Broadcast Error:", error);
+        console.error(" WebSocket Broadcast Error:", error);
       }
     });
 
     socket.on("disconnect", () => {
-      console.log("❌ Client disconnected:", socket.id);
+      console.log(" Client disconnected:", socket.id);
     });
   });
 

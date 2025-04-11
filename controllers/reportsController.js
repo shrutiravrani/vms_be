@@ -1,7 +1,7 @@
 const Event = require("../models/Event");
 const User = require("../models/User");
 
-// 🎯 Volunteer Reports
+//  Volunteer Reports
 const getVolunteerReports = async (req, res) => {
   try {
     const volunteerId = req.user.id;
@@ -100,7 +100,7 @@ const getVolunteerReports = async (req, res) => {
   }
 };
 
-// 🎯 Manager Reports
+//  Manager Reports
 const getManagerReports = async (req, res) => {
   try {
     const managerId = req.user.id;

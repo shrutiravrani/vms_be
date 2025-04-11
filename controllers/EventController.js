@@ -22,18 +22,18 @@ const createEvent = async (req, res) => {
       location,
       requirements,
       createdBy: req.user._id,
-      team: { members: [req.user._id] }, // ✅ Event manager is added to the team
+      team: { members: [req.user._id] }, //  Event manager is added to the team
     });
 
     await newEvent.save();
 
-    // ✅ Check if chat group already exists
+    //  Check if chat group already exists
     let chatGroup = await Chat.findOne({ eventId: newEvent._id });
 
     if (!chatGroup) {
       chatGroup = new Chat({
         eventId: newEvent._id,
-        members: [req.user._id], // ✅ Only the event manager initially
+        members: [req.user._id], //  Only the event manager initially
         messages: [{ sender: req.user._id, text: `Welcome to the "${title}" chat!` }],
       });
 

@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const chatSchema = new mongoose.Schema({
   eventId: { type: mongoose.Schema.Types.ObjectId, ref: 'Event', required: true },
-  members: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }], // ✅ Store all members
+  members: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }], //  Store all members
   messages: [
     {
       sender: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
